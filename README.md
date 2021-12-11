@@ -1,2 +1,2 @@
-# NewAndea-2.0
-Nuevo proyecto andea
+# NuevoAndea
+Se crea la nueva vista
