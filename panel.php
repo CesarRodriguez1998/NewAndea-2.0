@@ -52,7 +52,7 @@ if(!isset($_SESSION['roles_idroles'])){
   <body> 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-md-2 col-lg-2 me-0 px-3" href="index.php">Andea</a>
-      <p style="color: #FFFFFF;">
+      <p style="color: #FFFFFF; font-size: 20px;">
       <?php
           session_start();
           $correo = $_SESSION['correo'];

@@ -11,7 +11,7 @@ if (isset($_SESSION['roles_idroles'])) {
       header("location: panel.php");
     break;
     case 3:
-      header("location: Crear curso.php");
+      header("location: Crear curso2.php");
     break;
 
     default:

@@ -1,7 +1,8 @@
 <?php
 include('dbConnect.php');
-$idtemas = $_GET['id'];
-$sql = "SELECT * FROM temas WHERE idtemas ='".$idtemas."'";
+$idcursos = $_GET['id'];
+$sql = "SELECT cursos.nombre, temas.nomTema FROM cursos INNER JOIN temas ON cursos.idcursos = temas.idtemas";
+
 $result = mysqli_query($conexion, $sql);
 while($mostrar = mysqli_fetch_assoc($result)) {
 
@@ -53,12 +54,13 @@ while($mostrar = mysqli_fetch_assoc($result)) {
 <div class="table-responsive">
             <form>
                 <input type="hidden" name="id" value="<?php echo $mostrar['idtemas'] ?>">
-                <input type="text" class="form-control" id="validationCustom03" placeholder="Link a RStudio online" name="lkrs" value="<?php echo $mostrar['nomTema']?>"><br>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="Nombre del tema" name="nomTema" value="<?php echo $mostrar['nomTema'] ?>"><br>
                 <input type="text" class="form-control" id="validationCustom03" placeholder="Link a RStudio online" name="lkrs" value="<?php echo $mostrar['linkROnline']?>"><br>
                 <input type="text" class="form-control" id="validationCustom05" placeholder="Link a Google Colab" name="lkgoo" value="<?php echo $mostrar['colab'] ?>"><br>
                 <input type="text" class="form-control" id="validationCustom05" placeholder="Link a Git" name="lkgit" value="<?php echo $mostrar['linkGit'] ?>"> <br>
+                <input type="number" class="form-control" id="validationCustom05" placeholder="Numero Cruso" name="ncs" value="<?php echo $mostrar['cursos_idcursos'] ?>"> <br>
                 <button type="submit" class="btn btn-success">Actualizar</button>
-                <?php echo "<a href='../Crear Curso2.php' class='btn btn-danger'>Regresar</a>"; ?>
+                <?php echo "<a href='../Crear Curso.php' class='btn btn-danger'>Regresar</a>"; ?>
             </form>
 
 </div>

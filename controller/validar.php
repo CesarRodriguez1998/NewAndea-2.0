@@ -18,11 +18,13 @@ if ($filas == true) {
     if ($rol == 2) {
         header("location: ../panel.php");
     }elseif($rol == 3){
-        header("location: ../Crear Curso.php");
+        header("location: ../Crear Curso2.php");
     }elseif($rol == 1){
         header("location: ../login.php?fallo=true");
         session_destroy();
         die();
+    }elseif($rol == 4){
+        header("location: ../index.php");
     }
 }else{
     header("location: ../login.php?fallo=true");
