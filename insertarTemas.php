@@ -69,7 +69,6 @@ if(!isset($_SESSION['roles_idroles'])){
         <span class="navbar-toggler-icon"></span>
       </button>
       <?php
-					session_start();
 					if (isset($_SESSION['roles_idroles'])) {
 						echo "<div class='header_side d-flex flex-row justify-content-center align-items-center color: cornsilk;'>";
 						echo "<li class='main_nav_item' color: cornsilk; ><a href='controller/closeSesion.php'>Cerrar sesion</a></li>";
@@ -119,7 +118,6 @@ if(!isset($_SESSION['roles_idroles'])){
 
                 </p>
                 <?php
-                $mail = $correo;
                   $sql = "SELECT * FROM temas
                   INNER JOIN cursos ON temas.cursos_idcursos = cursos.idcursos WHERE cursos.nombre = '$nom'";
                   $result = mysqli_query($conexion, $sql);
@@ -129,12 +127,13 @@ if(!isset($_SESSION['roles_idroles'])){
                 ?>
                 <tr>
                   <td style="display: none;"><?php echo $mostrar['idtemas']?></td>
+                  <td style="display: none;"><?php echo $mostrar['idcursos']?></td>
                   <td><?php echo $mostrar['nomTema']?></td>
                   <td><?php echo $mostrar['linkROnline'] ?></td>
                   <td><?php echo $mostrar['colab'] ?></td>
                   <td><?php echo $mostrar['linkGit'] ?></td>
                   <td>
-                    <a class="btn btn-success" href="controller/editar.php?id=<?php echo $mostrar['idtemas']?>">Editar</a>
+                    <a class="btn btn-success" href="controller/editar.php?id=<?php echo $mostrar['idtemas']?>&idCurso=<?php echo $mostrar["idcursos"] ?>">Editar</a>
                     <?php echo "<a href='controller/delete.php?id= $mostrar[idtemas]' class='btn btn-danger'>Eliminar</a>";
                     ?>
                   </td>

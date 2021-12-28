@@ -39,6 +39,9 @@
 								<li class="main_nav_item"><a href="Maestros.php">Docentes</a></li>
 								<li class="main_nav_item"><a href="Publicaciones.php">Publicaciones</a></li>
 								<?php
+								              if(isset($_GET["fallo1"]) && $_GET["fallo1"] == 'true'){
+												echo "<div style='color:red'>Correo o contraseña invalido - O no esta habilitado </div>";
+											  }
 									session_start();
 									if(isset($_SESSION['roles_idroles'])){
 										if($_SESSION['roles_idroles'] == 2){
@@ -55,7 +58,6 @@
 				</div>
 
 				<?php
-					session_start();
 					if (isset($_SESSION['roles_idroles'])) {
 						echo "<div class='header_side d-flex flex-row justify-content-center align-items-center color: cornsilk;'>";
 						echo "<li class='main_nav_item' color: cornsilk; ><a href='controller/closeSesion.php'>Cerrar sesion</a></li>";

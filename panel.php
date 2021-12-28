@@ -3,6 +3,7 @@
 //Seguridad de sesion de las paginas.
 include('controller/dbConnect.php');
 session_start();
+error_reporting(0);
 
 if(!isset($_SESSION['roles_idroles'])){
   header("location: login.php");
@@ -49,12 +50,11 @@ if(!isset($_SESSION['roles_idroles'])){
     <link href="dashboard/dashboard.css" rel="stylesheet">
   </head>
 
-  <body> 
+  <body>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-md-2 col-lg-2 me-0 px-3" href="index.php">Andea</a>
       <p style="color: #FFFFFF; font-size: 20px;">
       <?php
-          session_start();
           $correo = $_SESSION['correo'];
           echo "Bienvenido {$correo}.";
 
@@ -139,17 +139,39 @@ if(!isset($_SESSION['roles_idroles'])){
                   <td><?php echo $mostrar['correo'] ?></td>
                   <td><?php echo $mostrar['telefono'] ?></td>
                   <?php
-                      echo '<form action = "controller/validarChech.php" mehtod="POST">';
+                    $checked = '';
+                    $checked1 = '';
+                    $coco = $mostrar['idusuario'];
+                                  
+                    if($mostrar['usuHabilitado'] == 1)
+                    {
+                      $checked = 'checked="checked"';
+                    }
+                                                        
+                    if($mostrar['roles_idroles'] == 3)
+                    {
+                      $checked1 = 'checked="checked"';
+                    }
                       echo  '<td><div class="form-check form-switch">';
-                      echo  '<input class="form-check-input" type="checkbox" name="check" id="flexSwitchCheckDefault">';
-                      echo  '<label class="form-check-label" for="flexSwitchCheckDefault"></label>';
-                      echo  '</div></td>';
+                      echo '<form method="POST" action="controlRol.php">';
+                      echo '<input type="hidden" name="nombre" id="" value="'.$coco.'" checked>';
+                      echo '<input type="hidden" name="vr" id="" value="4">';
+                      echo '<input type="checkbox" class="form-check-input" name="vr" id="" value="3"  '.$checked1.'>';
+                      echo '<input type="submit" class="btn btn-success" name="subir" value="Confirmar">';
                       echo '</form>';
+                      echo  '</div></td>';
                   ?>
                   <?php
+
                       echo  '<td><div class="form-check form-switch">';
-                      echo  '<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">';
-                      echo  '<label class="form-check-label" for="flexSwitchCheckDefault"></label>';
+                      echo '<form method="POST" action="controlRol.php">';
+                      echo '<input type="hidden" name="nombre" id="" value="'.$coco.'" checked>';
+                      echo '<input type="hidden" name="ver" id="" value="0">';
+                      echo '<input type="checkbox" class="form-check-input" name="ver" id="" value="0"  '.$checked.'>';
+                      echo '<input type="checkbox" class="form-check-input" name="ver" id="" value="1"  '.$checked.'>';
+                      echo '<input type="submit" class="btn btn-success" name="subir" value="Confirmar">';
+                      
+                      echo '</form>';
                       echo  '</div></td>';
                   ?>
                   <?php

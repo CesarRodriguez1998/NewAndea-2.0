@@ -1,6 +1,7 @@
 <?php
 include('dbConnect.php');
 $idtemas = $_GET['id'];
+$idcursos1 = $_GET['idCurso'];
 $sql = "SELECT * FROM temas WHERE idtemas ='".$idtemas."'";
 $result = mysqli_query($conexion, $sql);
 while($mostrar = mysqli_fetch_assoc($result)) {
@@ -53,26 +54,29 @@ while($mostrar = mysqli_fetch_assoc($result)) {
 <div class="table-responsive">
             <form>
                 <input type="hidden" name="id" value="<?php echo $mostrar['idtemas'] ?>">
-                <input type="text" class="form-control" id="validationCustom03" placeholder="Link a RStudio online" name="lkrs" value="<?php echo $mostrar['nomTema']?>"><br>
+                <input type="hidden" name="idCursos" value="<?php echo $mostrar['cursos_idcursos'] ?>">
+                <input type="text" class="form-control" id="validationCustom03" placeholder="Link a RStudio online" name="nomTema" value="<?php echo $mostrar['nomTema']?>"><br>
                 <input type="text" class="form-control" id="validationCustom03" placeholder="Link a RStudio online" name="lkrs" value="<?php echo $mostrar['linkROnline']?>"><br>
                 <input type="text" class="form-control" id="validationCustom05" placeholder="Link a Google Colab" name="lkgoo" value="<?php echo $mostrar['colab'] ?>"><br>
                 <input type="text" class="form-control" id="validationCustom05" placeholder="Link a Git" name="lkgit" value="<?php echo $mostrar['linkGit'] ?>"> <br>
-                <button type="submit" class="btn btn-success">Actualizar</button>
+                <button type="submit" href="controller/editar.php?id=<?php echo $mostrar['idtemas']?>&idCurso=<?php echo $mostrar["idcursos"] ?> name=" class="btn btn-success">Actualizar</button>
                 <?php echo "<a href='../Crear Curso2.php' class='btn btn-danger'>Regresar</a>"; ?>
             </form>
 
 </div>
-<?php } 
-
+<?php } ?>
+<?php
+  error_reporting (0);
+    $idp = $_GET['id'];
+    $cursos = $_GET['idCursos'];
     $nomTema = $_GET['nomTema'];
     $lkrs = $_GET['lkrs'];
     $lkgoo = $_GET['lkgoo'];
     $lkgit = $_GET['lkgit'];
-    $ncs = $_GET['ncs'];
-    if($nomTema != null || $lkrs != null || $lkgoo != null || $lkgit != null || $ncs != null){
-        $sql1 = "UPDATE temas SET nomTema = '".$nomTema."', linkROnline = '".$lkrs."', colab = '".$lkgoo."', linkGit = '".$lkgit."', cursos_idcursos = '".$ncs."' WHERE idtemas = '".$idtemas."' ";
+    if($nomTema != null || $lkrs != null || $lkgoo != null || $lkgit != null || $cursos != null){
+        $sql1 = "UPDATE temas SET nomTema = '".$nomTema."', linkROnline = '".$lkrs."', colab = '".$lkgoo."', linkGit = '".$lkgit."', cursos_idcursos = '".$cursos."' WHERE idtemas = '".$idp."' ";
         mysqli_query($conexion, $sql1);
-        header('location:../Crear Curso.php');
+        header('location:../Crear Curso2.php');
     }
 ?>
 

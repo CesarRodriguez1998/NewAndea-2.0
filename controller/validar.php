@@ -10,7 +10,18 @@ include('dbConnect.php');
 $consulta = "SELECT * FROM usuario where correo = '$correo' and contraseña = '$contraseña'";
 $resultado = mysqli_query($conexion, $consulta);
 $filas = mysqli_fetch_array($resultado);
-//$filas[3];
+
+$activado = $filas[10];
+switch ($activado) {
+    case '0':
+        header("location: ../login.php?fallo=true");
+        session_destroy();
+        break;
+    
+    default:
+
+        break;
+}
 
 if ($filas == true) {
     $rol = $filas[9];

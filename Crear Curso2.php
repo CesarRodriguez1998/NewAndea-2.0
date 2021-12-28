@@ -61,7 +61,6 @@ $hola = "false";
       <a class="navbar-brand col-md-2 col-lg-2 me-0 px-3" href="index.php">Andea</a>
       <p style="color: #FFFFFF; font-size: 20px;">
       <?php
-          session_start();
           $correo = $_SESSION['correo'];
           echo "Bienvenido {$correo}.";
 
@@ -72,7 +71,6 @@ $hola = "false";
         <span class="navbar-toggler-icon"></span>
       </button>
       <?php
-					session_start();
 					if (isset($_SESSION['roles_idroles'])) {
 						echo "<div class='header_side d-flex flex-row justify-content-center align-items-center color: cornsilk;'>";
 						echo "<li class='main_nav_item' color: cornsilk; ><a href='controller/closeSesion.php'>Cerrar sesion</a></li>";
@@ -149,10 +147,9 @@ $hola = "false";
                 ?>
                 <tr>
                   <td style="display: none;"><?php echo $mostrar['idcursos']?></td>
-                  <td style="display: none;"><?php echo $mostrar['idcursos']?></td>
                   <td><?php echo $mostrar['nombre']?></td>
                   <td>
-                    <a class="btn btn-success" href="insertarTemas.php?id=<?php echo $mostrar['idcursos']?>&?mail=<?php echo $mostrar['usuario_idusuario']?>">Agregar Temas</a>
+                    <a class="btn btn-success" href="insertarTemas.php?id=<?php echo $mostrar['idcursos']?>">Agregar Temas</a>
                   </td>
                   <?php
                     

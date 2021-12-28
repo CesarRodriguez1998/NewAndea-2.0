@@ -53,7 +53,6 @@
 
 				<div class="header_side d-flex flex-row justify-content-center align-items-center color: cornsilk;">
 				<?php
-					session_start();
 					if (isset($_SESSION['roles_idroles'])) {
 						echo "<div class='header_side d-flex flex-row justify-content-center align-items-center color: cornsilk;'>";
 						echo "<li class='main_nav_item' color: cornsilk; ><a href='controller/closeSesion.php'>Cerrar sesion</a></li>";
